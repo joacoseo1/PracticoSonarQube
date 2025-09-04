@@ -2,10 +2,10 @@
 let counter = 0;
 const items = ["uno", "dos", "tres"];
 
-// Función optimizada (se eliminó lógica duplicada)
+// Función optimizada con for-of
 function processItems() {
-    for (let i = 0; i < items.length; i++) {
-        console.info(`Processing item: ${items[i]}`);
+    for (const item of items) {
+        console.info(`Processing item: ${item}`);
         counter++;
         console.info(`Incrementado contador a: ${counter}`);
     }
@@ -33,10 +33,7 @@ function saveUserData() {
 
 // Comparación estricta para evitar bugs
 function checkValue(value) {
-    if (value === 0) {
-        return true;
-    }
-    return false;
+    return value === 0;
 }
 
 // Llamada a funciones al cargar la página
@@ -44,7 +41,7 @@ window.onload = function () {
     processItems();
 
     // Definición única de variable
-    let temp = 20;
+    const temp = 20;
 
     // Log de información (en producción podría enviarse a un sistema de monitoreo en lugar de consola)
     console.info("La página se cargó completamente con temp =", temp);

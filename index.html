@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="es" xml:lang="es">
 
 <head>
+  <meta charset="UTF-8">
   <title>SonarQube Demo</title>
   <style>
     body {
-      font-family: Arial;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       background-color: #f4f4f4;
@@ -20,14 +21,9 @@
     header {
       background: #50a8a0;
       color: white;
-      padding-top: 30px;
+      padding: 30px 0 20px 0;
       min-height: 70px;
       border-bottom: #e8491d 3px solid;
-    }
-
-    /* Selector duplicado deliberadamente para que SonarQube lo detecte */
-    header {
-      padding-bottom: 20px;
     }
 
     #branding {
@@ -36,11 +32,6 @@
 
     #branding h1 {
       margin: 0;
-    }
-
-    /* Selector sin usar - problema para SonarQube */
-    .unused-class {
-      color: red;
     }
   </style>
 </head>
@@ -51,38 +42,46 @@
       <div id="branding">
         <h1>SonarQube Demo</h1>
       </div>
-      <!-- Imagen sin atributo alt - problema de accesibilidad -->
-      <img src="logo.png">
+      <img src="logo.png" alt="Logo de la empresa">
     </div>
   </header>
 
   <div class="container">
-    <!-- Etiqueta form sin action - problema para SonarQube -->
-    <form>
-      <input type="text" placeholder="Buscar...">
+    <form action="buscar.html" method="get">
+      <input type="text" placeholder="Buscar..." name="q">
       <button type="submit">Buscar</button>
     </form>
 
     <h2>Bienvenido al Demo</h2>
-    <p>Este sitio tiene problemas deliberados para ser detectados por SonarQube.</p>
+    <p>Este sitio ahora corrige problemas de accesibilidad y buenas prácticas.</p>
 
-    <!-- Tabla sin encabezados - problema de accesibilidad -->
     <table border="1">
-      <tr>
-        <td>Fila 1, Celda 1</td>
-        <td>Fila 1, Celda 2</td>
-      </tr>
-      <tr>
-        <td>Fila 2, Celda 1</td>
-        <td>Fila 2, Celda 2</td>
-      </tr>
+      <thead>
+        <tr>
+          <th>Columna 1</th>
+          <th>Columna 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Fila 1, Celda 1</td>
+          <td>Fila 1, Celda 2</td>
+        </tr>
+        <tr>
+          <td>Fila 2, Celda 1</td>
+          <td>Fila 2, Celda 2</td>
+        </tr>
+      </tbody>
     </table>
 
-    <!-- JavaScript inline - mala práctica -->
-    <button onclick="alert('Hola mundo!')">Clic aquí</button>
+    <button id="alertButton">Clic aquí</button>
 
-    <!-- Script al final -->
     <script src="scripts.js"></script>
+    <script>
+      document.getElementById("alertButton").addEventListener("click", function () {
+        alert("Hola mundo!");
+      });
+    </script>
   </div>
 </body>
 

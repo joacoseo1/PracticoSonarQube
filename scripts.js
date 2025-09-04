@@ -1,48 +1,64 @@
-// Variables globales con let/const
-let counter = 0;
-const items = ["uno", "dos", "tres"];
+// Variables globales - SonarQube suele detectar esto como problema
+var counter = 0;
+var items = ["uno", "dos", "tres"];
 
-// Función optimizada (sin código duplicado)
+// Función con complejidad alta - código duplicado
 function processItems() {
-    for (const item of items) {
-        console.info(`Processing item: ${item}`);
-        counter++;
-        console.info(`Incrementado contador a: ${counter}`);
+    for (var i = 0; i < items.length; i++) {
+        console.log("Processing item: " + items[i]);
+        
+        // Lógica duplicada deliberadamente
+        if (items[i] === "uno") {
+            counter++;
+            console.log("Incrementado contador a: " + counter);
+        } else if (items[i] === "dos") {
+            counter++;
+            console.log("Incrementado contador a: " + counter);
+        } else {
+            counter++;
+            console.log("Incrementado contador a: " + counter);
+        }
     }
+    
     return counter;
 }
 
-// Evaluación de expresión más segura (evitar eval)
+// Función sin usar - código muerto
+function unusedFunction() {
+    return "Esta función nunca se usa";
+}
+
+// Vulnerabilidad típica - evaluación de expresión insegura
 function evaluateUserInput(input) {
-    try {
-        // Uso de Function en lugar de eval (aún inseguro si el input no se valida)
-        const fn = new Function(`return ${input}`);
-        return fn();
-    } catch (error) {
-        console.error("Error evaluando la expresión:", error);
-        return null;
-    }
+    // Esto es una mala práctica de seguridad que SonarQube detectará
+    return eval(input);
 }
 
-// Manejo de datos con precaución (sin localStorage inseguro)
+// Manejo inseguro de datos
 function saveUserData() {
-    const userData = document.getElementById("user-data").value;
-    // Mejor usar sessionStorage o enviar al servidor
-    sessionStorage.setItem("userData", userData);
+    var userData = document.getElementById("user-data").value;
+    // Almacenamiento de datos sensibles en localStorage
+    localStorage.setItem("userData", userData);
 }
 
-// Comparación estricta para evitar bugs
+// Código con posible bug - comparación incorrecta
 function checkValue(value) {
-    return value === 0;
+    // Uso de == en lugar de === (problema de calidad)
+    if (value == 0) {
+        return true;
+    }
+    return false;
 }
 
 // Llamada a funciones al cargar la página
-window.onload = function () {
+window.onload = function() {
     processItems();
-
-    // Definición única de variable
-    const temp = 20;
-
-    // Log informativo (en producción → logger externo)
-    console.info("La página se cargó completamente con temp =", temp);
+    
+    // Definición de variables duplicadas - SonarQube detectará esto
+    var temp = 10;
+    // ...código...
+    var temp = 20; // Redefinición
+    
+    // Uso de console.log en producción - mala práctica
+    console.log("La página se cargó completamente");
 };

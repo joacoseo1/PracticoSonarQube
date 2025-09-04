@@ -1,5 +1,5 @@
 // Variables globales - SonarQube suele detectar esto como problema
-const counter = 0;
+let counter = 0;
 const items = ["uno", "dos", "tres"];
 
 // Función con complejidad alta - código duplicado

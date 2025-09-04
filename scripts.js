@@ -2,7 +2,7 @@
 let counter = 0;
 const items = ["uno", "dos", "tres"];
 
-// Función optimizada con for-of
+// Función optimizada (sin código duplicado)
 function processItems() {
     for (const item of items) {
         console.info(`Processing item: ${item}`);
@@ -15,7 +15,7 @@ function processItems() {
 // Evaluación de expresión más segura (evitar eval)
 function evaluateUserInput(input) {
     try {
-        // Reemplazo de eval por Function (aún debe evitarse en entornos críticos)
+        // Uso de Function en lugar de eval (aún inseguro si el input no se valida)
         const fn = new Function(`return ${input}`);
         return fn();
     } catch (error) {
@@ -27,7 +27,7 @@ function evaluateUserInput(input) {
 // Manejo de datos con precaución (sin localStorage inseguro)
 function saveUserData() {
     const userData = document.getElementById("user-data").value;
-    // Mejor usar sessionStorage o enviarlo al servidor de forma segura
+    // Mejor usar sessionStorage o enviar al servidor
     sessionStorage.setItem("userData", userData);
 }
 
@@ -43,6 +43,6 @@ window.onload = function () {
     // Definición única de variable
     const temp = 20;
 
-    // Log de información (en producción podría enviarse a un sistema de monitoreo en lugar de consola)
+    // Log informativo (en producción → logger externo)
     console.info("La página se cargó completamente con temp =", temp);
 };
